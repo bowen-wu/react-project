@@ -1,0 +1,40 @@
+$bg-color: #f7f7f7;
+$color: #f9971d;
+$text-color: #101010;
+$label-color: #000;
+$border-color: #bbb;
+$border-radius: 4px;
+$status-color: #bbb;
+$telephone-color: #4d81c7;
+
+@mixin fontLineColor($fontSize: 16px, $lineHeight: 20px, $color: #000) {
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    color: $color;
+}
+
+@mixin flex($justifyContent: flex-start, $alignItem: flex-start) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItem;
+}
+
+@mixin widthHeight($width: 100%, $height: 100%) {
+    width: $width;
+    height: $height;
+}
+
+@mixin textOverflowEllipsis($max-width) {
+    max-width: $max-width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin loading() {
+    @include widthHeight(100%, 100%);
+    position: absolute;
+    @include flex(center, center);
+    background-color: $bg-color;
+    z-index: 2;
+}
