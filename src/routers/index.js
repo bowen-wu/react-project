@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Button } from 'antd-mobile';
 
 import Home from '../pages/Home/Home';
@@ -11,7 +11,7 @@ import Error from '../pages/Error/Error';
 class Routers extends Component {
     render() {
         return (
-            <Router>
+            <BrowserRouter>
                 <div className="router">
                     <button className="link-button"><Link to="/">Home</Link></button>
                     <button className="link-button"><Link to="/login">Login</Link></button>
@@ -26,7 +26,7 @@ class Routers extends Component {
                     <Route path="/account" component={Account} />
                     <Route path="/error" component={Error} />
                 </div>
-            </Router>
+            </BrowserRouter>
         )
     }
 }
