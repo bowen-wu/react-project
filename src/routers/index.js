@@ -13,13 +13,6 @@ class Routers extends Component {
         return (
             <BrowserRouter>
                 <div className="router">
-                    <button className="link-button"><Link to="/">Home</Link></button>
-                    <button className="link-button"><Link to="/login">Login</Link></button>
-                    <button className="link-button"><Link to="/detail">Detail</Link></button>
-                    <button className="link-button"><Link to="/account">Account</Link></button>
-                    <button className="link-button"><Link to="/error">Error</Link></button>
-                    
-                    
                     <Route path="/" exact component={Home} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/detail" exact component={Detail} />

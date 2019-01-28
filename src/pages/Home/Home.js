@@ -12,10 +12,18 @@ class Home extends Component {
         super();
         this.state = {}
     }
+    skip(target) {
+        this.props.history.push(`/${target}`);
+    }
     render() {
         return (
             <div className="title">
-            This is Home page
+                This is Home page
+                <hr />
+                <Button onClick={this.skip.bind(this, 'detail')}>go to detail</Button>
+                <Button onClick={this.skip.bind(this, 'account')}>go to account</Button>
+                <Button onClick={this.skip.bind(this, 'error')}>go to error</Button>
+                <Button onClick={this.skip.bind(this, 'login')}>go to login</Button>
             </div>
         )
     }

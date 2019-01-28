@@ -8,9 +8,20 @@ import Loading from '../../components/Loading/Loading';
 import './Error.scss';
 
 class Error extends Component {
+    constructor() {
+        super();
+        this.state = {}
+    }
+    goBackToHome() {
+        this.props.history.push('/');
+    }
     render() {
         return (
-            <div className="title">Error page</div>
+            <div className="title">
+                Error page
+                <hr />
+                <Button onClick={this.goBackToHome.bind(this)}>go back to Home</Button>
+            </div>
         )
     }
 }

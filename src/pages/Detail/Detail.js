@@ -8,9 +8,20 @@ import Loading from '../../components/Loading/Loading';
 import './Detail.scss';
 
 class Detail extends Component {
+    constructor() {
+        super();
+        this.state = {}
+    }
+    goBackToHome() {
+        this.props.history.push('/');
+    }
     render() {
         return (
-            <div className="title">Detail page</div>
+            <div className="title">
+                Detail page
+                <hr />
+                <Button onClick={this.goBackToHome.bind(this)}>go back to Home</Button>
+            </div>
         )
     }
 }

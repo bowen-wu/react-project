@@ -8,9 +8,20 @@ import Loading from '../../components/Loading/Loading';
 import './Account.scss';
 
 class Account extends Component {
+    constructor() {
+        super();
+        this.state = {}
+    }
+    goBackToHome() {
+        this.props.history.push('/');
+    }
     render() {
         return (
-            <div className="title">Account page</div>
+            <div className="title">
+                Account page
+                <hr />
+                <Button onClick={this.goBackToHome.bind(this)}>go back to Home</Button>
+            </div>
         )
     }
 }
