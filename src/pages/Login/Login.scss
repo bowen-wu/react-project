@@ -1,0 +1,44 @@
+@import '../../common/style/var';
+
+.login{
+    height: 100%;
+    padding-top: 72px;
+    &-logo-wrapper{
+        @include flex(center, center);
+        margin-bottom: 20px;
+        > .login-logo{
+            @include widthHeight(90px, 90px);
+            vertical-align: top;
+        }
+    }
+    &-form{
+        padding: 0 40px;
+        &-row{
+            margin-top: 12px;
+            .am-list-body, .am-list-item{
+                background-color: $bg-color;
+            }
+            &:last-of-type{
+                margin-bottom: 36px;
+            }
+        }
+    }
+    .login-submit{
+        padding: 0 62px;
+        &-button{
+            background-color: $color;
+            color: #fff;
+        }
+        &-button-active{
+            background-color: lighten($color, 20%);
+            color: #fff;
+        }
+    }
+    .am-list .am-list-body{
+        border-top: 0;
+        &::before{
+            height: 0;
+        }
+    }
+}
+

@@ -14,6 +14,11 @@ class Home extends Component {
         super();
         this.state = {}
     }
+    componentWillMount() {
+        if(!this.props.loginStatus) {
+            this.props.history.push('/login');
+        }
+    }
     skip(target) {
         this.props.history.push(`/${target}`);
     }
