@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { createForm } from 'rc-form';
+
 
 import { Button, List, InputItem, Toast } from 'antd-mobile';
 import Util from '../../common/utils/util';
@@ -18,9 +20,31 @@ class Login extends Component {
         }
     }
     login() {
-
+        if(this.state.submitActive) {
+            return;
+        }
+        this.props.form.validateFields(async (error, value) => {
+            if (error) {
+                Toast.fail('请填写完整信息', 1);
+                return;
+            };
+            this.setState({
+                submitActive: true
+            });
+    
+            let {username, password} = value;
+            console.log('username, password', username, password);
+            return;
+            this.props.dispatchUserInfo({...this.props.userInfo, username});
+            localStorage.removeItem('userInfo');
+            localStorage.setItem('userInfo', JSON.stringify({username, timer: Date.now()}));
+    
+            this.props.dispatchLoginStatue(true);
+            this.props.history.push('/');
+        });
     }
     render() {
+        const { getFieldProps } = this.props.form;
         return (
             <div className='login'>
                 <div className='login-logo-wrapper'>
@@ -28,10 +52,18 @@ class Login extends Component {
                 </div>
                 <div className='login-form'>
                     <List className='login-form-row'>
-                        <InputItem maxLength='6' placeholder='请输入用户名'></InputItem>
+                        <InputItem {...getFieldProps('username', {
+                                rules: [{
+                                    'required': true
+                                }]
+                            })} maxLength='6' placeholder='请输入用户名'></InputItem>
                     </List>
                     <List className='login-form-row'>
-                    <InputItem maxLength='16' placeholder='请输入密码'></InputItem>
+                        <InputItem {...getFieldProps('password', {
+                                rules: [{
+                                    'required': true
+                                }]
+                            })} type='password' maxLength='16' placeholder='请输入密码'></InputItem>
                     </List>
                 </div>
                 <div className='login-submit' onClick={this.login.bind(this)}>
@@ -61,4 +93,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default createForm()(connect(mapStateToProps, mapDispatchToProps)(Login));
