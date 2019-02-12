@@ -15,11 +15,13 @@ export const routerConfig = [
     }, {
         path: '/detail',
         component: Detail,
+        auth: true,
     }, {
         path: '/error',
         component: Error,
     }, {
         path: '/account',
         component: Account,
+        auth: true,
     }
 ];
