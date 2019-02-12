@@ -36,9 +36,10 @@ class Login extends Component {
             let {username, password} = value;
             let res = await Api.login({username, password});
             if(res) {
-                this.props.dispatchUserInfo({...this.props.userInfo, username});
+                let {id: userId, attributes: {username}} = res;
+                this.props.dispatchUserInfo({...this.props.userInfo, userId, username});
                 localStorage.removeItem('userInfo');
-                localStorage.setItem('userInfo', JSON.stringify({username, timer: Date.now()}));
+                localStorage.setItem('userInfo', JSON.stringify({userId, timer: Date.now()}));
         
                 this.props.dispatchLoginStatue(true);
                 this.props.history.push('/');

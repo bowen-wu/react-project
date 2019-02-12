@@ -1,10 +1,10 @@
 import { SET_LOGIN_STATUS, UPDATE_USER_INFO } from './actionTypes';
 
 const userInfo = JSON.parse(window.localStorage.getItem('userInfo')) || {};
-let {userName} = userInfo;
+let {userId} = userInfo;
 
 let initState = {
-    loginStatus: userName ? true : false,
+    loginStatus: userId ? true : false,
     userInfo,
 }
 
