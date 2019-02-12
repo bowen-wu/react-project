@@ -8,6 +8,7 @@
 # testing
 /coverage
 
+
 # production
 
 # misc
@@ -20,3 +21,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/src/leanCode.js

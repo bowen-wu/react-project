@@ -8,6 +8,7 @@ import Util from '../../common/utils/util';
 import Loading from '../../components/Loading/Loading';
 import { setLoginStatus, updateUserInfo } from '../../redux/actions';
 import Logo from '../../common/img/logo.svg';
+import Api from '../../fetch/Api';
 
 
 import './Login.scss';
@@ -19,7 +20,7 @@ class Login extends Component {
             submitActive: false,
         }
     }
-    login() {
+    async login() {
         if(this.state.submitActive) {
             return;
         }
@@ -33,14 +34,19 @@ class Login extends Component {
             });
     
             let {username, password} = value;
-            console.log('username, password', username, password);
-            return;
-            this.props.dispatchUserInfo({...this.props.userInfo, username});
-            localStorage.removeItem('userInfo');
-            localStorage.setItem('userInfo', JSON.stringify({username, timer: Date.now()}));
-    
-            this.props.dispatchLoginStatue(true);
-            this.props.history.push('/');
+            let res = await Api.login({username, password});
+            if(res) {
+                this.props.dispatchUserInfo({...this.props.userInfo, username});
+                localStorage.removeItem('userInfo');
+                localStorage.setItem('userInfo', JSON.stringify({username, timer: Date.now()}));
+        
+                this.props.dispatchLoginStatue(true);
+                this.props.history.push('/');
+            } else {
+                this.setState({
+                    submitActive: false
+                });
+            } 
         });
     }
     render() {
@@ -56,7 +62,7 @@ class Login extends Component {
                                 rules: [{
                                     'required': true
                                 }]
-                            })} maxLength='6' placeholder='请输入用户名'></InputItem>
+                            })} maxLength='10' placeholder='请输入用户名'></InputItem>
                     </List>
                     <List className='login-form-row'>
                         <InputItem {...getFieldProps('password', {
