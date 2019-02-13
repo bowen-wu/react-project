@@ -16,25 +16,18 @@ import './Login.scss';
 class Login extends Component {
     constructor() {
         super();
-        this.state = {
-            submitActive: false,
-        }
+        this.state = {}
     }
-    async login() {
-        if(this.state.submitActive) {
-            return;
-        }
+    async login(type) {
         this.props.form.validateFields(async (error, value) => {
             if (error) {
                 Toast.fail('请填写完整信息', 1);
                 return;
             };
-            this.setState({
-                submitActive: true
-            });
     
             let {username, password} = value;
-            let res = await Api.login({username, password});
+            let method = type === 'login' ? 'login' : 'signup'
+            let res =  await Api[method]({username, password});
             if(res) {
                 let {id: userId, attributes: {username}} = res;
                 this.props.dispatchUserInfo({...this.props.userInfo, userId, username});
@@ -43,11 +36,7 @@ class Login extends Component {
         
                 this.props.dispatchLoginStatue(true);
                 this.props.history.push('/');
-            } else {
-                this.setState({
-                    submitActive: false
-                });
-            } 
+            }
         });
     }
     render() {
@@ -73,8 +62,9 @@ class Login extends Component {
                             })} type='password' maxLength='16' placeholder='请输入密码'></InputItem>
                     </List>
                 </div>
-                <div className='login-submit' onClick={this.login.bind(this)}>
-                    <Button className='submit-button' activeClassName='submit-button-active' loading={this.state.submitActive} disabled={this.state.submitActive}>确定</Button>
+                <div className='login-submit'>
+                    <Button className='submit-button submit-signup' activeClassName='submit-button-active' onClick={this.login.bind(this, 'signup')}>注册</Button>
+                    <Button className='submit-button submit-login' activeClassName='submit-button-active' onClick={this.login.bind(this, 'login')}>登录</Button>
                 </div>
             </div>
         )

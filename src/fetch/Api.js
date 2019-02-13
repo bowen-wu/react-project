@@ -16,6 +16,13 @@ function login({username, password}) {
     return instance({method: User.logIn(username, password)});
 }
 
+function signup({username, password}) {
+    let user = new AV.User();
+    user.setUsername(username);
+    user.setPassword(password);
+    return instance({method: user.signUp()});
+}
+
 async function getToDoList({userId, pageNo = 1}) {
     let skipNum = (pageNo - 1) * limitNum;
     let query = new AV.Query('ToDoList');
@@ -35,4 +42,5 @@ async function getToDoList({userId, pageNo = 1}) {
 export default {
     login,
     getToDoList,
+    signup,
 }

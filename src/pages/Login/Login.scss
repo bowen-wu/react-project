@@ -24,19 +24,17 @@
         }
     }
     .login-submit{
-        padding: 0 62px;
-        &-button{
-            background-color: $color;
-            color: #fff;
-        }
-        &-button-active{
-            background-color: lighten($color, 20%);
-            color: #fff;
+        padding: 0 40px;
+        .submit-signup{
+            margin-bottom: 16px;
         }
     }
     .am-list .am-list-body{
         border-top: 0;
         &::before{
+            height: 0;
+        }
+        &::after{
             height: 0;
         }
     }
