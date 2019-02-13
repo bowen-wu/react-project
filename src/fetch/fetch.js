@@ -12,5 +12,4 @@ AV.init({
 });
 
 
-
-export default AV
+export default AV;

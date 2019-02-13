@@ -1,11 +1,14 @@
-$bg-color: #f7f7f7;
-$color: #f9971d;
+$bg-color: rgba(255, 255, 255, 0.8);
+$color: #333;
 $text-color: #101010;
 $label-color: #000;
-$border-color: #bbb;
+$border-color: #dedede;
 $border-radius: 4px;
 $status-color: #bbb;
 $telephone-color: #4d81c7;
+$box-shadow-color: rgba(0, 0, 0, 0.3);
+$add-box-shadow-color: rgba(255, 255, 255, 0.4);
+$no-data-color: #eee;
 
 @mixin fontLineColor($fontSize: 16px, $lineHeight: 20px, $color: #000) {
     font-size: $fontSize;

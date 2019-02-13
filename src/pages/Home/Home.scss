@@ -1,0 +1,104 @@
+@import '../../common/style/var';
+.home {
+    height: 100%;
+    background: url('https://upload-images.jianshu.io/upload_images/9617841-3b9fb6132cc9fcd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240') center center no-repeat;
+    background-size: cover;
+    &-content {
+        &-main-card {
+            @include flex(center, center);
+            flex-direction: column;
+            border-radius: $border-radius;
+            box-shadow: 1px 1px 1px 1px $box-shadow-color;
+            padding: 24px;
+            &-avatar {
+                @include widthHeight(48px, 48px);
+                margin-bottom: 8px;
+                &-icon {
+                    @include widthHeight();
+                }
+            }
+        }
+        &-list-item {
+            @include flex();
+            flex-direction: column;
+            padding: 8px;
+            margin: 8px;
+            border-radius: $border-radius;
+            box-sizing: border-box;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3), 0 0 1px 1px rgba(0,0,0,0.2);
+            &>* {
+                width: 100%;
+            }
+            &-main {
+                @include flex(space-between, center);
+                margin-bottom: 6px;
+                &-title {
+                    @include fontLineColor(14px, 18px, $color);
+                }
+                &-status {
+                    @include widthHeight(8px, 8px);
+                    border-radius: 50%;
+                }
+            }
+            &-basic {
+                @include flex(space-between, flex-start);
+                @include fontLineColor(12px, 16px, $color);
+            }
+        }
+    }
+    &-add{
+        position: fixed;
+        bottom: 48px;
+        right: 24px;
+        background-color: $bg-color;
+        border-radius: 50%;
+        padding: 4px;
+        box-shadow: 0 0 1px 2px $add-box-shadow-color; 
+        &-icon{
+            @include widthHeight(32px, 32px);
+            vertical-align: top;
+        }
+    }
+    &-footer {
+        @include flex(center, center);
+        &.no-data {
+            @include fontLineColor(14px, 18px, $no-data-color);
+            padding-top: 13px;
+        }
+        .loading {
+            @include widthHeight(64px, 32px);
+            div {
+                @include widthHeight(8px, 8px);
+                top: 13px;
+            }
+        }
+    }
+
+    &.sticky-list .am-list-body{
+        background-color: transparent;
+        &::before{
+            height: 0px;
+        }
+        &::after{
+            height: 0px;
+        }
+         div:not(:last-child) .am-list-line::after{
+            height: 0px;
+        }
+    }
+    &.sticky-list .sticky-container .am-list-item {
+        padding-left: 0;
+        background-color: rgba(0, 0, 0, 0.1);      
+    }
+    &.sticky-list .sticky-container .am-list-line {
+        padding-right: 0;
+    }
+    &.sticky-list .sticky-container .am-list-line .am-list-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    &.sticky-list .sticky-container .sticky {
+        padding: 7px 15px;
+        transform: none;
+    }
+}

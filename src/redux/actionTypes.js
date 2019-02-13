@@ -1,3 +1,8 @@
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+
+export const UPDATE_TO_DO_LIST_INFO = 'UPDATE_TO_DO_LIST_INFO';
+
+export const SET_REFRESH_HOME = 'SET_REFRESH_HOME';
+
