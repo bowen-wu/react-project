@@ -88,7 +88,7 @@ class Home extends Component {
     cardTemplate() {
         return (
         <div className='home-content-main'>
-            <div className='home-add'>
+            <div className='home-add' onClick={this.skip.bind(this, 'create')}>
                 <img src={Add} className='home-add-icon' alt='add' />
             </div>
             <div className='home-content-main-card' onClick={this.skip.bind(this, 'account')}>
@@ -120,7 +120,7 @@ class Home extends Component {
         if(this.props.toDoListInfo && this.props.toDoListInfo.toDoList.length) {
             return this.props.toDoListInfo.toDoList.map(item => {
                 return (
-                    <div className='home-content-list-item' key={item.id}>
+                    <div className='home-content-list-item' key={item.id} onClick={this.skip.bind(this, 'detail')}>
                         <div className='home-content-list-item-main'>
                             <div className='home-content-list-item-main-title'>{item.title}</div>
                             <div className='home-content-list-item-main-status' style={item.status ? {backgroundColor: '#00f'} : {backgroundColor: '#f00'}}></div>

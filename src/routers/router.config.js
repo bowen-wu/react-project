@@ -2,6 +2,7 @@ import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Detail from '../pages/Detail/Detail';
 import Account from '../pages/Account/Account';
+import Create from '../pages/Create/Create';
 import Error from '../pages/Error/Error';
 
 export const routerConfig = [
@@ -22,6 +23,11 @@ export const routerConfig = [
     }, {
         path: '/account',
         component: Account,
+        auth: true,
+    },
+    {
+        path: '/create',
+        component: Create,
         auth: true,
     }
 ];
