@@ -102,7 +102,7 @@ class Home extends Component {
     }
     renderFooterTemplate() {
         let {totalPage, pageNo} = this.props.toDoListInfo;
-        if (pageNo === totalPage) {
+        if (!totalPage || pageNo === totalPage) {
             return (
                 <div className='home-footer no-data'>
                     没有更多了
