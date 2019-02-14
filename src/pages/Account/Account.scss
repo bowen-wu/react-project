@@ -1,0 +1,45 @@
+@import '../../common/style/var';
+
+.account{
+    height: 100%;
+    @include flex();
+    flex-direction: column;
+    > * {
+        width: 100%;
+    }
+    &-main{
+        @include flex(center, center);
+        flex-direction: column;
+        padding: 32px 0 48px;
+        &-avatar{
+            @include widthHeight(64px, 64px);
+            border-radius: 50%;
+            margin-bottom: 8px;
+            overflow: hidden;
+            background-color: $bg-color;
+            padding: 8px;
+            &-icon{
+                @include widthHeight();
+            }
+        }
+    }
+    &-content{
+        &-item{
+            @include flex();
+            padding: 8px 15px;
+            border-bottom: 1px solid $border-color;
+            margin: 8px 15px;
+            &-title{
+                @include fontLineColor(16px, 20px, $color-light);             
+            }
+            &-number{
+                @include fontLineColor(14px, 18px, $color);
+                margin-left: auto;
+            }
+        }
+    }
+    &-back{
+        margin-top: auto;
+        padding: 0 15px 36px;
+    }
+}

@@ -60,9 +60,19 @@ function addTodo({content, location, person, time, title, userId, status}) {
     return instance({method: toDoList.save()});
 }
 
+async function getEventCount() {
+    let query = new AV.Query('ToDoList');
+    query.equalTo('status', 0);
+    let todoCount = await instance({method: query.count()});
+    query.equalTo('status', 1);
+    let completeCount = await instance({method: query.count()});
+    return {todoCount, completeCount};
+}
+
 export default {
     login,
     getToDoList,
     signup,
     addTodo,
+    getEventCount,
 }
