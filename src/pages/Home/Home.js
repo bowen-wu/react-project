@@ -49,9 +49,9 @@ class Home extends Component {
         }
     }
     async getToDoList() {
-        let {toDoList, searchContent} = this.props.toDoListInfo;
+        let {toDoList, searchTitle, pageNo} = this.props.toDoListInfo;
         let {userId} = JSON.parse(localStorage.getItem('userInfo'));
-        let res = await Api.getToDoList({userId});
+        let res = await Api.getToDoList({userId, searchTitle, pageNo});
         if(res) {
             let {pageObj: {totalPage, pageNo}, list} = res;
             list.forEach(item => {
@@ -60,14 +60,22 @@ class Home extends Component {
                 let obj = Object.assign({}, {id, content, location, person, status, title, createTime, userId});
                 toDoList.push(obj);
             });
-            this.props.dispatchToDoListInfo({toDoList, totalPage, pageNo, searchContent});
+            this.props.dispatchToDoListInfo({toDoList, totalPage, pageNo, searchTitle});
         }
     }
     skip(target) {
         this.props.history.push(`/${target}`);
     }
-    searchEvent() {
-
+    async searchEvent(searchWord = undefined) {
+        let {toDoListInfo} = this.props;
+        toDoListInfo.toDoList = [];
+        if(searchWord === 'clear') {
+            toDoListInfo.searchTitle = '';
+        } else {
+            toDoListInfo.searchTitle = searchWord;
+        }
+        await this.props.dispatchToDoListInfo(toDoListInfo);
+        await this.getToDoList();
     }
     onScrollHandle() {
         // this.props.dispatchScrollY(this.lv.listviewRef.scrollProperties.offset);

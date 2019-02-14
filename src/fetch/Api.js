@@ -29,10 +29,11 @@ function signup({username, password}) {
     return instance({method: user.signUp()});
 }
 
-async function getToDoList({userId, pageNo = 1}) {
+async function getToDoList({userId, searchTitle = '', pageNo = 1}) {
     let skipNum = (pageNo - 1) * limitNum;
     let query = new AV.Query('ToDoList');
     query.equalTo('userId', userId);
+    query.contains('title', searchTitle);
     query.limit(limitNum);
     query.skip(skipNum);
     let count = await instance({method: query.count()});

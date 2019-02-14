@@ -10,7 +10,7 @@ let initState = {
         toDoList: [],
         totalPage: 1,
         pageNo: 1,
-        searchContent: undefined,
+        searchTitle: undefined,
     },
     refreshHome: true,
 }
