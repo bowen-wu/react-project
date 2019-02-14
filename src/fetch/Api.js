@@ -1,3 +1,5 @@
+import { Toast } from 'antd-mobile';
+
 import AV from './fetch';
 
 const { Query, User } = AV;
@@ -8,7 +10,11 @@ async function instance({method}) {
         const res = await method;
         return res;
     } catch (error) {
-        console.error('api error', error.message);
+        if(error.message.indexOf('Username has already been taken.') >= 0) {
+            Toast.info('用户名已经被占用', 2);
+        } else {
+            console.error('api error', error.message);
+        }
     }
 }
 
