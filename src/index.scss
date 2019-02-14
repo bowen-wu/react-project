@@ -17,6 +17,17 @@ body {
     height: 100%;
     background: url('https://upload-images.jianshu.io/upload_images/9617841-3b9fb6132cc9fcd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240') center center no-repeat;
     background-size: cover;
+    position: relative;
+    &:after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: inherit;
+        filter: blur(2px);
+    }
 }
 
 code {

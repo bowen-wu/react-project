@@ -1,6 +1,7 @@
 @import '../../common/style/var';
 .home {
     height: 100%;
+    overflow-y: scroll;
     &-content {
         &-main-card {
             @include flex(center, center);
@@ -46,6 +47,7 @@
     }
     &-add{
         position: fixed;
+        z-index: 2;
         bottom: 48px;
         right: 24px;
         background-color: $bg-color;
@@ -86,7 +88,25 @@
     }
     &.sticky-list .sticky-container .am-list-item {
         padding-left: 0;
-        background-color: rgba(0, 0, 0, 0.1);      
+        .home-content-search, .am-search{
+            background-color: transparent;
+        }
+        .sticky{
+            background: url('https://upload-images.jianshu.io/upload_images/9617841-b84d0fb794048d94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240') center 25% no-repeat;
+            background-size: cover;
+            position: relative;
+            &:after{
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: inherit;
+                filter: blur(1px);
+                z-index: -1;
+            }
+        }
     }
     &.sticky-list .sticky-container .am-list-line {
         padding-right: 0;
