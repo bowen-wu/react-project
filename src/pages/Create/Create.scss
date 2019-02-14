@@ -9,12 +9,25 @@
         width: 100%;
         box-sizing: border-box;
     }
-    &-title{
-        @include fontLineColor(18px, 22px, $color);
-        text-align: center;
-        padding: 12px;
-        background-color: $bg-color;
+    &-header{
+        position: relative;
         margin-bottom: 16px;
+        &-back{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 24px;
+            &-icon{
+                @include widthHeight(24px, 24px);
+                vertical-align: top;
+            }
+        }
+        &-title{
+            @include fontLineColor(18px, 22px, $color);
+            text-align: center;
+            padding: 12px;
+            background-color: $bg-color;
+        }
     }
     &-row{
         padding: 8px 15px;

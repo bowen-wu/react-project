@@ -10,12 +10,11 @@ import Title from '../../common/img/title.svg';
 import Person from '../../common/img/person.svg';
 import Time from '../../common/img/time.svg';
 import Place from '../../common/img/location.svg';
+import Back from '../../common/img/back.svg';
 import Api from '../../fetch/Api';
 import { setRefreshHome } from '../../redux/actions';
 
-
 import './Create.scss';
-
 
 class Create extends Component {
     constructor() {
@@ -65,7 +64,12 @@ class Create extends Component {
         const { getFieldProps } = this.props.form;
         return (
             <div className='create'>
-                <div className='create-title'>添加待办</div>
+                <div className='create-header'>
+                    <div className='create-header-back' onClick={this.goBackToHome.bind(this)}>
+                        <img src={Back} className='create-header-back-icon' alt='back' />
+                    </div>
+                    <div className='create-header-title'>添加待办</div>
+                </div>
                 <List className='create-row'>
                     <InputItem {...getFieldProps('title', {
                             rules: [{
