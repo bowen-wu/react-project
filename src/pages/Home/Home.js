@@ -44,12 +44,12 @@ class Home extends Component {
         });
         if(this.props.refreshHome) {
             await this.props.dispatchToDoListInfo({ toDoList: [], totalPage: 1, pageNo: 1});
-            await this.getToDoList();
+            await this.getToDoList(1);
             this.props.dispatchRefreshHome(false);
         }
     }
-    async getToDoList() {
-        let {toDoList, searchTitle, pageNo} = this.props.toDoListInfo;
+    async getToDoList(pageNo) {
+        let {toDoList, searchTitle} = this.props.toDoListInfo;
         let {userId} = JSON.parse(localStorage.getItem('userInfo'));
         let res = await Api.getToDoList({userId, searchTitle, pageNo});
         if(res) {
@@ -67,15 +67,17 @@ class Home extends Component {
         this.props.history.push(`/${target}`);
     }
     async searchEvent(searchWord = undefined) {
-        let {toDoListInfo} = this.props;
-        toDoListInfo.toDoList = [];
-        if(searchWord === 'clear') {
-            toDoListInfo.searchTitle = '';
-        } else {
-            toDoListInfo.searchTitle = searchWord;
+        if(searchWord) {
+            let {toDoListInfo} = this.props;
+            toDoListInfo.toDoList = [];
+            if(searchWord === 'clear') {
+                toDoListInfo.searchTitle = '';
+            } else {
+                toDoListInfo.searchTitle = searchWord;
+            }
+            await this.props.dispatchToDoListInfo(toDoListInfo);
+            await this.getToDoList(1);
         }
-        await this.props.dispatchToDoListInfo(toDoListInfo);
-        await this.getToDoList();
     }
     onScrollHandle() {
         // this.props.dispatchScrollY(this.lv.listviewRef.scrollProperties.offset);
@@ -145,10 +147,13 @@ class Home extends Component {
         }
     }
     onEndReached(){
+        console.log(111);
         let {totalPage, pageNo} = this.props.toDoListInfo;
+        console.log('totalPage, pageNo', totalPage, pageNo);
         if (pageNo === totalPage) {
           return;
         }
+        this.getToDoList(this.props.toDoListInfo.pageNo + 1);
     }
     render() {
         return (

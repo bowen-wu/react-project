@@ -1,7 +1,6 @@
 @import '../../common/style/var';
 .home {
     height: 100%;
-    overflow-y: scroll;
     &-content {
         &-main-card {
             @include flex(center, center);
