@@ -1,5 +1,7 @@
 $bg-color: rgba(255, 255, 255, 0.8);
+$bg-color-light: rgba(255, 255, 255, 0.6);
 $color: #333;
+$color-light: #999;
 $text-color: #101010;
 $label-color: #000;
 $border-color: #dedede;
@@ -9,6 +11,7 @@ $telephone-color: #4d81c7;
 $box-shadow-color: rgba(0, 0, 0, 0.3);
 $add-box-shadow-color: rgba(255, 255, 255, 0.4);
 $no-data-color: #eee;
+$loading-bg-color: rgba(0, 0, 0, 0.6);
 
 @mixin fontLineColor($fontSize: 16px, $lineHeight: 20px, $color: #000) {
     font-size: $fontSize;
@@ -34,10 +37,10 @@ $no-data-color: #eee;
     white-space: nowrap;
 }
 
-@mixin loading() {
+@mixin pageLoading() {
     @include widthHeight(100%, 100%);
     position: absolute;
     @include flex(center, center);
-    background-color: $bg-color;
+    background-color: $bg-color-light;
     z-index: 2;
 }

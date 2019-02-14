@@ -1,0 +1,74 @@
+@import '../../common/style/var';
+
+.create{
+    height: 100%;
+    @include flex();
+    flex-direction: column;
+    position: relative;
+    > * {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    &-title{
+        @include fontLineColor(18px, 22px, $color);
+        text-align: center;
+        padding: 12px;
+        background-color: $bg-color;
+        margin-bottom: 16px;
+    }
+    &-row{
+        padding: 8px 15px;
+        .am-input-control{
+            textarea, input{
+                @include fontLineColor(14px, 18px, $color-light);
+            }
+        }
+        * {
+            background-color: transparent;
+        }
+        &.create-row-content.am-list {
+            * {
+                background-color: transparent;
+            }
+            .am-list-body{
+                background-color: $bg-color;
+                &::after{
+                    height: 0;
+                }
+            }
+        }
+        &.create-row-time{
+            .am-list-extra{
+                flex-basis: 64%;
+            }
+        }
+        &-label{
+            @include flex(flex-start, center);
+            @include fontLineColor(16px, 20px, $color);
+            &-icon{
+                margin-right: 4px;
+            }
+        }
+    }
+
+    &-add-todo{
+        margin-top: auto;
+        margin-bottom: 24px;
+        padding: 0 15px;
+    }
+
+    .page-loading{
+        @include pageLoading();
+    }
+
+    .am-list .am-list-body{
+        border-top: 0;
+        &::before{
+            height: 0;
+        }
+        &::after{
+            height: 2px;
+            background-color: $border-color;
+        }
+    }
+}

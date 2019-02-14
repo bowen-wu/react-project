@@ -18,8 +18,8 @@ const util = {
         }
         return `${year}-${month}-${date_}`;
     },
-    isWeChatBrowser(){
-        return /micromessenger/.test(navigator.userAgent.toLowerCase());
+    dateChangeTimeStamp(date) {
+        return Date.parse(date);
     }
 }
 

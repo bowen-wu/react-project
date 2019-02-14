@@ -39,8 +39,23 @@ async function getToDoList({userId, pageNo = 1}) {
     return {pageObj, list};
 }
 
+function addTodo({content, location, person, time, title, userId, status}) {
+    let ToDoList = AV.Object.extend('ToDoList');
+    let toDoList = new ToDoList();
+    toDoList.set('content', content);
+    toDoList.set('location', location);
+    toDoList.set('person', person);
+    toDoList.set('time', time);
+    toDoList.set('title', title);
+    toDoList.set('userId', userId);
+    toDoList.set('status', status);
+
+    return instance({method: toDoList.save()});
+}
+
 export default {
     login,
     getToDoList,
     signup,
+    addTodo,
 }
