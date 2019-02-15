@@ -1,0 +1,13 @@
+@import '../../common/style/var';
+
+.error{
+    height: 100%;
+    background-color: #fff;
+    &-icon{
+        @include widthHeight(100%, 80%);
+    }
+    &-tip{
+        @include fontLineColor(14px, 20px, $color);
+        text-align: center;
+    }
+}
