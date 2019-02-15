@@ -2,6 +2,9 @@
 .home {
     height: 100%;
     &-content {
+        &-main{
+            position: relative;
+        }
         &-main-card {
             @include flex(center, center);
             flex-direction: column;
@@ -59,10 +62,10 @@
         }
     }
     &-test{
-        position: fixed;
+        position: absolute;
         z-index: 2;
-        top: 32px;
-        right: 0;
+        top: 17px;
+        right: -15px;
         background-color: $bg-color-warn;
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
