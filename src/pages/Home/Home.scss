@@ -58,6 +58,17 @@
             vertical-align: top;
         }
     }
+    &-test{
+        position: fixed;
+        z-index: 2;
+        top: 32px;
+        right: 0;
+        background-color: $bg-color-warn;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+        padding: 8px 8px 8px 12px;
+        @include fontLineColor(14px, 18px, #fff);
+    }
     &-footer {
         @include flex(center, center);
         &.no-data {

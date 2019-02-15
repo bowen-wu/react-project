@@ -13,6 +13,16 @@ import Account from '../../common/img/account.svg';
 import Add from '../../common/img/add.svg';
 import Api from '../../fetch/Api';
 
+function closest(el, selector) {
+    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    while (el) {
+      if (matchesSelector.call(el, selector)) {
+        return el;
+      }
+      el = el.parentElement;
+    }
+    return null;
+  }
 
 class Home extends Component {
     constructor() {
@@ -29,6 +39,7 @@ class Home extends Component {
 
         this.state = {
             dataSource,
+            modalVisible: false,
         }
     }
     async componentDidMount() {
@@ -70,6 +81,26 @@ class Home extends Component {
         }
         this.props.history.push(path);
     }
+    testModal() {
+        this.setState({
+            modalVisible: true,
+        });
+    }
+    onClose() {
+        this.setState({
+            modalVisible: false,
+        });
+    }
+    onWrapTouchStart = (e) => {
+        // fix touch to scroll background page on iOS
+        if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
+            return;
+        }
+        const pNode = closest(e.target, '.am-modal-content');
+        if (!pNode) {
+            e.preventDefault();
+        }
+    }
     async searchEvent(searchWord = undefined) {
         if(searchWord) {
             let {toDoListInfo} = this.props;
@@ -105,12 +136,28 @@ class Home extends Component {
             <div className='home-add' onClick={this.skip.bind(this, 'create')}>
                 <img src={Add} className='home-add-icon' alt='add' />
             </div>
+            <div className='home-test' onClick={this.testModal.bind(this)}>
+                test
+            </div>
             <div className='home-content-main-card' onClick={this.skip.bind(this, 'account')}>
                 <div className='home-content-main-card-avatar'>
                     <img src={Account} className='home-content-main-card-avatar-icon' alt='logo' />
                 </div>
                 <div className='home-content-main-card-username'>{this.props.userInfo.username}</div>
             </div>
+            <Modal
+                visible={this.state.modalVisible}
+                transparent
+                maskClosable={false}
+                onClose={this.onClose.bind(this)}
+                title='测试 Modal'
+                footer={[{ text: 'Ok', onPress: () => { this.onClose() } }]}
+                wrapProps={{ onTouchStart: this.onWrapTouchStart }}
+            >
+                <div style={{ height: 100, overflow: 'scroll' }}>
+                    这是测试
+                </div>
+            </Modal>
         </div>
         ) 
     }
