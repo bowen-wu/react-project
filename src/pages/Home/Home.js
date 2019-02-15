@@ -63,8 +63,12 @@ class Home extends Component {
             this.props.dispatchToDoListInfo({toDoList, totalPage, pageNo, searchTitle});
         }
     }
-    skip(target) {
-        this.props.history.push(`/${target}`);
+    skip(target, id) {
+        let path = `/${target}`;
+        if(target === 'detail' && id) {
+            path = `/${target}?id=${id}`;
+        }
+        this.props.history.push(path);
     }
     async searchEvent(searchWord = undefined) {
         if(searchWord) {
@@ -130,7 +134,7 @@ class Home extends Component {
         if(this.props.toDoListInfo && this.props.toDoListInfo.toDoList.length) {
             return this.props.toDoListInfo.toDoList.map(item => {
                 return (
-                    <div className='home-content-list-item' key={item.id} onClick={this.skip.bind(this, 'detail')}>
+                    <div className='home-content-list-item' key={item.id} onClick={this.skip.bind(this, 'detail', item.id)}>
                         <div className='home-content-list-item-main'>
                             <div className='home-content-list-item-main-title'>{item.title}</div>
                             <div className='home-content-list-item-main-status' style={item.status ? {backgroundColor: '#00f'} : {backgroundColor: '#f00'}}></div>
@@ -147,9 +151,7 @@ class Home extends Component {
         }
     }
     onEndReached(){
-        console.log(111);
         let {totalPage, pageNo} = this.props.toDoListInfo;
-        console.log('totalPage, pageNo', totalPage, pageNo);
         if (pageNo === totalPage) {
           return;
         }

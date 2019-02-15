@@ -1,0 +1,70 @@
+@import '../../common/style/var';
+
+.detail{
+    height: 100%;
+    @include flex();
+    flex-direction: column;
+    position: relative;
+    > * {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    &-header{
+        position: relative;
+        margin-bottom: 16px;
+        &-back{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 24px;
+            &-icon{
+                @include widthHeight(24px, 24px);
+                vertical-align: top;
+            }
+        }
+        &-title{
+            @include fontLineColor(18px, 22px, $color);
+            text-align: center;
+            padding: 12px;
+            background-color: $bg-color;
+        }
+    }
+
+    &-content{
+        padding: 8px 15px;
+        &-item{
+            @include flex(flex-start, center);
+            padding: 8px 15px;
+            border-bottom: 1px solid $border-color;
+            &-title{
+                @include fontLineColor(16px, 20px, $color-light); 
+            }
+            &-text{
+                @include fontLineColor(14px, 18px, $color);
+                margin-left: auto;
+            }
+        }
+    }
+
+    &-event-content{
+        @include fontLineColor(14px, 18px, $color);
+        padding: 16px 30px;
+    }
+
+    &-action{
+        margin-top: auto;
+        @include flex(center, center);
+        padding: 0 15px 24px;
+        &>*{
+            flex: 1;
+            margin: 0 12px;
+        }
+        &-delete{
+            background-color: $bg-color-warn;
+            color: #fff;
+            &.am-button::before {
+                border: none !important;
+            }
+        }
+    }
+}

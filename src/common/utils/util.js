@@ -1,3 +1,11 @@
+function addZero(value) {
+    let val = value;
+    if(`${val}`.length === 1) {
+        val = `0${val}`;
+    }
+    return val;
+}
+
 const util = {
     telephoneVerfication(telephone) {
         return /^1[3|4|5|7|8]\d{9}$/.test(telephone);
@@ -8,16 +16,13 @@ const util = {
     timeStampChangeDate(timeStamp) {
         let date = new Date(timeStamp);
         let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        if(`${month}`.length === 1) {
-            month = `0${month}`;
-        }
-        let date_ = date.getDate();
-        if(`${date_}`.length === 1) {
-            date_ = `0${date_}`;
-        }
-        return `${year}-${month}-${date_}`;
+        let month = addZero(date.getMonth() + 1);
+        let date_ = addZero(date.getDate());
+        let hour = addZero(date.getHours());
+        let minutes = addZero(date.getMinutes());
+        return `${year}-${month}-${date_} ${hour}:${minutes}`;
     },
+
     dateChangeTimeStamp(date) {
         return Date.parse(date);
     }

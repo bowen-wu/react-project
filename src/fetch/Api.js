@@ -69,10 +69,31 @@ async function getEventCount() {
     return {todoCount, completeCount};
 }
 
+function getEventDetail({eventId}) {
+    console.log('id', eventId);
+    let query = new AV.Query('ToDoList');
+    query.equalTo('objectId', eventId);
+    return instance({method: query.find()});
+}
+
+function completeEvent(eventId) {
+    let todo = AV.Object.createWithoutData('ToDoList', eventId);
+    todo.set('status', 1);
+    return instance({method: todo.save()});
+}
+
+function deleteEvent(eventId) {
+    let todo = AV.Object.createWithoutData('ToDoList', eventId);
+    return instance({method: todo.destroy()});
+} 
+
 export default {
     login,
     getToDoList,
     signup,
     addTodo,
     getEventCount,
+    getEventDetail,
+    completeEvent,
+    deleteEvent,
 }
