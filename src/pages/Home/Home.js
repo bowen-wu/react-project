@@ -5,6 +5,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import { Button, SearchBar, ListView, Modal } from 'antd-mobile';
 import Util from '../../common/utils/util';
 import Loading from '../../components/Loading/Loading';
+import FixModalTouchBGScroll from '../../common/utils/fixModalTouchBGScroll';
 
 import { setLoginStatus, updateToDoListInfo, setRefreshHome } from '../../redux/actions';
 
@@ -13,16 +14,6 @@ import Account from '../../common/img/account.svg';
 import Add from '../../common/img/add.svg';
 import Api from '../../fetch/Api';
 
-function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
-    while (el) {
-      if (matchesSelector.call(el, selector)) {
-        return el;
-      }
-      el = el.parentElement;
-    }
-    return null;
-  }
 
 class Home extends Component {
     constructor() {
@@ -41,6 +32,9 @@ class Home extends Component {
             dataSource,
             modalVisible: false,
         }
+    }
+    componentWillMount() {
+        FixModalTouchBGScroll();
     }
     async componentDidMount() {
         this.setState({
@@ -90,16 +84,6 @@ class Home extends Component {
         this.setState({
             modalVisible: false,
         });
-    }
-    onWrapTouchStart = (e) => {
-        // fix touch to scroll background page on iOS
-        if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
-            return;
-        }
-        const pNode = closest(e.target, '.am-modal-content');
-        if (!pNode) {
-            e.preventDefault();
-        }
     }
     async searchEvent(searchWord = undefined) {
         if(searchWord) {
@@ -152,7 +136,6 @@ class Home extends Component {
                 onClose={this.onClose.bind(this)}
                 title='测试 Modal'
                 footer={[{ text: 'Ok', onPress: () => { this.onClose() } }]}
-                wrapProps={{ onTouchStart: this.onWrapTouchStart }}
             >
                 <div style={{ height: 100, overflow: 'scroll' }}>
                     这是测试
@@ -209,7 +192,7 @@ class Home extends Component {
             <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
-                className='am-list sticky-list home'
+                className='am-list sticky-list home scroller'
                 renderSectionWrapper={(sectionID) => (<StickyContainer key={`${sectionID}`} className="sticky-container" style={{ zIndex: 4 }} />)}
                 renderSectionHeader={this.renderSectionHeaderTemplate.bind(this)}
                 renderHeader={this.cardTemplate.bind(this)}
