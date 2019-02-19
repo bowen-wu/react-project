@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/media/account.74325722.svg"
   },
   {
-    "revision": "2cdb2fa9b6e6816f1b95",
+    "revision": "24de0e3b3c247eabbba5",
     "url": "/react-project/build/static/css/main.9bedec70.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/media/back.d42052db.svg"
   },
   {
-    "revision": "2cdb2fa9b6e6816f1b95",
-    "url": "/react-project/build/static/js/main.2cdb2fa9.chunk.js"
+    "revision": "24de0e3b3c247eabbba5",
+    "url": "/react-project/build/static/js/main.24de0e3b.chunk.js"
   },
   {
     "revision": "a8e1ea224f4f84513efaf59c79cddd7e",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/css/1.5e939f72.chunk.css"
   },
   {
-    "revision": "92a2289aa59fae3b2b25072ad69dcfa5",
+    "revision": "7d8fd54fa24b95d9057a4bf2983f07f3",
     "url": "/react-project/build/index.html"
   }
 ];
