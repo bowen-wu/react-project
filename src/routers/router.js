@@ -6,7 +6,6 @@ import { updateUserInfo, setLoginStatus } from '../redux/actions';
 
 class Routes extends Component{
     async componentWillMount() {
-        console.log('hi');
         if(this.props.userInfo.timer - Date.now() > 1000 * 60 * 60 * 24 * 15) {
             this.props.dispatchLoginStatue(false);
         } else {
@@ -17,27 +16,17 @@ class Routes extends Component{
     render() {
         const { location, config, loginStatus } = this.props;
         const { pathname } = location;
-        console.log('pathname', pathname);
-
-        console.log('config', config);
 
         // 如果该路由不用进行权限校验，登录状态下登陆页除外
         // 因为登陆后，无法跳转到登陆页
         // 这部分代码，是为了在非登陆状态下，访问不需要权限校验的路由
-        const targetRouterConfig = config.find((router) => {
-            console.log('router', router);
-            return router.path === pathname
-        });
-
-        console.log('targetRouterConfig', targetRouterConfig);
+        const targetRouterConfig = config.find((router) => router.path === pathname);
 
         if(targetRouterConfig && !targetRouterConfig.auth && !loginStatus){
             const { component } = targetRouterConfig;
             return <Route exact path={pathname} component={component} />
         }
 
-
-        console.log('loginStatus', loginStatus);
         if(loginStatus){
             // 如果是登陆状态，想要跳转到登陆，重定向到主页
             if(pathname === '/login'){
