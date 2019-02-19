@@ -6,6 +6,7 @@ import { updateUserInfo, setLoginStatus } from '../redux/actions';
 
 class Routes extends Component{
     async componentWillMount() {
+        console.log('hi');
         if(this.props.userInfo.timer - Date.now() > 1000 * 60 * 60 * 24 * 15) {
             this.props.dispatchLoginStatue(false);
         } else {
