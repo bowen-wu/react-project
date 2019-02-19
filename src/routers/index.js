@@ -7,7 +7,7 @@ import { routerConfig } from './router.config';
 class Routers extends Component {
     render(){
         return(
-            <BrowserRouter>
+            <BrowserRouter basename='/react-project/build/index.html'>
                 <Switch>
                     <Routes config={routerConfig} />
                 </Switch>
