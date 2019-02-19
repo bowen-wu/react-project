@@ -70,17 +70,16 @@ class Detail extends Component {
                     <div className='detail-header-title'>{this.state.title}</div>
                 </div>
 
-                {this.state.eventDetail.map(item => (
-                    <div className='detail-content'>
-                       <div className='detail-content-item' key={item.title}>
+                <div className='detail-content'>
+                    {this.state.eventDetail.map(item => (
+                        <div className='detail-content-item' key={item.title}>
                             <div className='detail-content-item-title'>{item.title}</div>
                             <div className='detail-content-item-text'>{item.content}</div>
                         </div>
-                    </div>
+                    ))}
+                    <div className='detail-content-text'>{this.state.content}</div>
+                </div>
 
-                ))}
-
-                <div className='detail-event-content'>{this.state.content}</div>
                 
                 <div className='detail-action'>
                     {this.state.status ? '' : <Button className='detail-action-complete' onClick={this.completeEvent.bind(this)}>完成</Button>}

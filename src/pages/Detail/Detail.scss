@@ -32,9 +32,11 @@
 
     &-content{
         padding: 8px 15px;
+        overflow-y: scroll;
         &-item{
             @include flex(flex-start, center);
             padding: 8px 15px;
+            margin: 8px 0;
             border-bottom: 1px solid $border-color;
             &-title{
                 @include fontLineColor(16px, 20px, $color-light); 
@@ -44,11 +46,10 @@
                 margin-left: auto;
             }
         }
-    }
-
-    &-event-content{
-        @include fontLineColor(14px, 18px, $color);
-        padding: 16px 30px;
+        &-text{
+            @include fontLineColor(14px, 18px, $color);
+            padding: 16px 15px;
+        }
     }
 
     &-action{
