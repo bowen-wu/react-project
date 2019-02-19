@@ -38,8 +38,21 @@
             }
         }
     }
-    &-back{
+
+    &-action{
         margin-top: auto;
-        padding: 0 15px 36px;
+        @include flex(center, center);
+        padding: 0 15px 24px;
+        &>*{
+            flex: 1;
+            margin: 0 12px;
+        }
+        &-logout{
+            background-color: $bg-color-warn;
+            color: #fff;
+            &.am-button::before {
+                border: none !important;
+            }
+        }
     }
 }

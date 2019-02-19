@@ -87,6 +87,10 @@ function deleteEvent(eventId) {
     return instance({method: todo.destroy()});
 } 
 
+function logout() {
+    return instance({method: AV.User.logOut()});
+}
+
 export default {
     login,
     getToDoList,
@@ -96,4 +100,5 @@ export default {
     getEventDetail,
     completeEvent,
     deleteEvent,
+    logout,
 }

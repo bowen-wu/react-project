@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import { Button, SearchBar, ListView, Modal } from 'antd-mobile';
 import Util from '../../common/utils/util';
 import Loading from '../../components/Loading/Loading';
+import { setLoginStatus, setRefreshHome } from '../../redux/actions';
+
 
 import './Account.scss';
 import Avatar from '../../common/img/logo.svg';
@@ -13,10 +15,25 @@ import Api from '../../fetch/Api';
 class Account extends Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            logoutStatus: false,
+        }
     }
     goBackToHome() {
         this.props.history.push('/');
+    }
+    async logout() {
+        this.setState({logoutStatus: true});
+        let res = await Api.logout();
+        if(res) {
+            localStorage.removeItem('userInfo');
+
+            this.props.dispatchLoginStatue(false);
+            this.props.dispatchRefreshHome(true);
+            this.props.history.push('/login');
+        }
+        this.setState({logoutStatus: false});
+
     }
     async componentDidMount() {
         let res = await Api.getEventCount();
@@ -45,8 +62,9 @@ class Account extends Component {
                     </div>
                 </div>
 
-                <div className='account-back' onClick={this.goBackToHome.bind(this)}>
-                    <Button className='account-back-button'>返回首页</Button>
+                <div className='account-action'>
+                    <Button className='account-action-back' onClick={this.goBackToHome.bind(this)}>返回首页</Button>
+                    <Button className='account-action-logout' disabled={this.state.logoutStatus} onClick={this.logout.bind(this)}>退出登录</Button>
                 </div>
             </div>
         )
@@ -63,9 +81,12 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return {
-        // dispatchLoginStatue: (status) => {
-        //     return dispatch(setLoginStatus(status));
-        // },
+        dispatchLoginStatue: (status) => {
+            return dispatch(setLoginStatus(status));
+        },
+        dispatchRefreshHome: (isRefresh) => {
+            return dispatch(setRefreshHome(isRefresh));
+        }
     }
 }
 
