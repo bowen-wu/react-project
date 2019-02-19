@@ -60,8 +60,9 @@ function addTodo({content, location, person, time, title, userId, status}) {
     return instance({method: toDoList.save()});
 }
 
-async function getEventCount() {
+async function getEventCount({userId}) {
     let query = new AV.Query('ToDoList');
+    query.equalTo('userId', userId);
     query.equalTo('status', 0);
     let todoCount = await instance({method: query.count()});
     query.equalTo('status', 1);
@@ -70,7 +71,6 @@ async function getEventCount() {
 }
 
 function getEventDetail({eventId}) {
-    console.log('id', eventId);
     let query = new AV.Query('ToDoList');
     query.equalTo('objectId', eventId);
     return instance({method: query.find()});

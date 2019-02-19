@@ -36,7 +36,8 @@ class Account extends Component {
 
     }
     async componentDidMount() {
-        let res = await Api.getEventCount();
+        let {userId} = this.props.userInfo;
+        let res = await Api.getEventCount({userId});
         if(res) {
             let {todoCount, completeCount} = res;
             this.setState({todoCount, completeCount});
