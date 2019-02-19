@@ -17,6 +17,7 @@ class Routes extends Component{
     render() {
         const { location, config, loginStatus } = this.props;
         const { pathname } = location;
+        console.log('pathname', pathname);
 
         console.log('config', config);
 
