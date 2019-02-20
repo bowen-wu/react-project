@@ -31,6 +31,7 @@ class Home extends Component {
         this.state = {
             dataSource,
             modalVisible: false,
+            bodyBg: '',
         }
     }
     componentWillMount() {
@@ -51,6 +52,13 @@ class Home extends Component {
             await this.props.dispatchToDoListInfo({ toDoList: [], totalPage: 1, pageNo: 1});
             await this.getToDoList(1);
             this.props.dispatchRefreshHome(false);
+        }
+        let cardHeight = this.cardDOM.clientHeight;
+        let containerHeight = this.containerDOM && this.containerDOM.node.clientHeight;
+        console.log('containerHeight', containerHeight);
+        let viewportHeight = window.innerHeight;
+        if(cardHeight + containerHeight > viewportHeight) {
+            this.setState({bodyBg: 'bodyBg'});
         }
     }
     async getToDoList(pageNo) {
@@ -116,32 +124,32 @@ class Home extends Component {
     }
     cardTemplate() {
         return (
-        <div className='home-content-main'>
-            <div className='home-add' onClick={this.skip.bind(this, 'create')}>
-                <img src={Add} className='home-add-icon' alt='add' />
-            </div>
-            <div className='home-test' onClick={this.testModal.bind(this)}>
-                test
-            </div>
-            <div className='home-content-main-card' onClick={this.skip.bind(this, 'account')}>
-                <div className='home-content-main-card-avatar'>
-                    <img src={Account} className='home-content-main-card-avatar-icon' alt='logo' />
+            <div className='home-content-main' ref={el => this.cardDOM = el}>
+                <div className='home-add' onClick={this.skip.bind(this, 'create')}>
+                    <img src={Add} className='home-add-icon' alt='add' />
                 </div>
-                <div className='home-content-main-card-username'>{this.props.userInfo.username}</div>
-            </div>
-            <Modal
-                visible={this.state.modalVisible}
-                transparent
-                maskClosable={false}
-                onClose={this.onClose.bind(this)}
-                title='测试 Modal'
-                footer={[{ text: 'Ok', onPress: () => { this.onClose() } }]}
-            >
-                <div style={{ height: 100, overflow: 'scroll' }}>
-                    这是测试
+                <div className='home-test' onClick={this.testModal.bind(this)}>
+                    test
                 </div>
-            </Modal>
-        </div>
+                <div className='home-content-main-card' onClick={this.skip.bind(this, 'account')}>
+                    <div className='home-content-main-card-avatar'>
+                        <img src={Account} className='home-content-main-card-avatar-icon' alt='logo' />
+                    </div>
+                    <div className='home-content-main-card-username'>{this.props.userInfo.username}</div>
+                </div>
+                <Modal
+                    visible={this.state.modalVisible}
+                    transparent
+                    maskClosable={false}
+                    onClose={this.onClose.bind(this)}
+                    title='测试 Modal'
+                    footer={[{ text: 'Ok', onPress: () => { this.onClose() } }]}
+                >
+                    <div style={{ height: 100, overflow: 'scroll' }}>
+                        这是测试
+                    </div>
+                </Modal>
+            </div>
         ) 
     }
     renderFooterTemplate() {
@@ -192,8 +200,8 @@ class Home extends Component {
             <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
-                className='am-list sticky-list home scroller'
-                renderSectionWrapper={(sectionID) => (<StickyContainer key={`${sectionID}`} className="sticky-container" style={{ zIndex: 4 }} />)}
+                className={`am-list sticky-list home scroller ${this.state.bodyBg}`}
+                renderSectionWrapper={(sectionID) => (<StickyContainer  ref={el => this.containerDOM = el}key={`${sectionID}`} className="sticky-container" style={{ zIndex: 4 }} />)}
                 renderSectionHeader={this.renderSectionHeaderTemplate.bind(this)}
                 renderHeader={this.cardTemplate.bind(this)}
                 renderFooter={this.renderFooterTemplate.bind(this)}

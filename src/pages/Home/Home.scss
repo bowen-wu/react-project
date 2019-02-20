@@ -4,6 +4,7 @@
     &-content {
         &-main{
             position: relative;
+            padding: 15px 15px 9px 15px;
         }
         &-main-card {
             @include flex(center, center);
@@ -64,8 +65,8 @@
     &-test{
         position: absolute;
         z-index: 2;
-        top: 17px;
-        right: -15px;
+        top: 24px;
+        right: 0;
         background-color: $bg-color-warn;
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
@@ -87,8 +88,19 @@
         }
     }
 
+    &.sticky-list.bodyBg {
+        .am-list-body{
+            background: url('../../common/img/bg.png') center center no-repeat;
+            padding-bottom: 55px;
+        }
+        .am-list-footer{
+            margin-top: -55px;
+            position: relative;
+            z-index: 5;
+        }
+    }
     &.sticky-list .am-list-body{
-        background: url('../../common/img/bg.png') center center no-repeat;
+        background-color: transparent;
         &::before{
             height: 0px;
         }
@@ -105,7 +117,7 @@
             background-color: transparent;
         }
         .sticky{
-            background: url('https://upload-images.jianshu.io/upload_images/9617841-b84d0fb794048d94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240') center 25% no-repeat;
+            background: url('../../common/img/search-bg.png') center 25% no-repeat;
             background-size: cover;
             position: relative;
             &:after{
@@ -132,9 +144,7 @@
         padding: 7px 15px;
         transform: none;
     }
-    .am-list-footer{
-        margin-top: -24px;
-        background: url('../../common/img/bg.png') center 80% no-repeat;
-        background-size: cover;
+    .am-list-header{
+        padding: 0;
     }
 }

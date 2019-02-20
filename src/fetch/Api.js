@@ -12,6 +12,8 @@ async function instance({method}) {
     } catch (error) {
         if(error.message.indexOf('Username has already been taken.') >= 0) {
             Toast.info('用户名已经被占用', 2);
+        } else if(error.message.indexOf('Could not find user.') >= 0) {
+            Toast.info('用户名不存在', 2);
         } else {
             console.error('api error', error.message);
         }
