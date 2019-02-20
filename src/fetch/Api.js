@@ -2,7 +2,7 @@ import { Toast } from 'antd-mobile';
 
 import AV from './fetch';
 
-const { Query, User } = AV;
+const { User } = AV;
 const limitNum = 10;
 
 async function instance({method}) {

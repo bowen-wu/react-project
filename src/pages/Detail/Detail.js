@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import { Button, Toast } from 'antd-mobile';
 import Util from '../../common/utils/util';
-import Loading from '../../components/Loading/Loading';
 import { setRefreshHome } from '../../redux/actions';
 
 

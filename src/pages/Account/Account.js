@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import { Button, SearchBar, ListView, Modal } from 'antd-mobile';
-import Util from '../../common/utils/util';
-import Loading from '../../components/Loading/Loading';
+import { Button } from 'antd-mobile';
 import { setLoginStatus, setRefreshHome } from '../../redux/actions';
 
 

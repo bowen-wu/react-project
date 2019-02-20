@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { StickyContainer, Sticky } from 'react-sticky';
 
-import { Button, SearchBar, ListView, Modal } from 'antd-mobile';
+import { SearchBar, ListView, Modal } from 'antd-mobile';
 import Util from '../../common/utils/util';
 import Loading from '../../components/Loading/Loading';
 import FixModalTouchBGScroll from '../../common/utils/fixModalTouchBGScroll';

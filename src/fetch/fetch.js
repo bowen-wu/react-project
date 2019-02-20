@@ -3,7 +3,6 @@ import AV from 'leancloud-storage';
 // 注意：需要自己创建一个 leanCode.js 文件，其中导出 APP_ID 和 APP_KEY 即可
 import leanCode from '../leanCode.js';
 
-const { Query, User } = AV;
 const {APP_ID, APP_KEY} = leanCode;
 
 AV.init({

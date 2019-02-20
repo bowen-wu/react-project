@@ -4,8 +4,6 @@ import { createForm } from 'rc-form';
 
 
 import { Button, List, InputItem, Toast } from 'antd-mobile';
-import Util from '../../common/utils/util';
-import Loading from '../../components/Loading/Loading';
 import { setLoginStatus, updateUserInfo } from '../../redux/actions';
 import Logo from '../../common/img/logo.svg';
 import Api from '../../fetch/Api';
