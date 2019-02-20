@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/media/add.a8e1ea22.svg"
   },
   {
-    "revision": "d3858053030979dc4639",
-    "url": "/react-project/build/static/css/main.6ccb5396.chunk.css"
+    "revision": "990e10186fe20c990258",
+    "url": "/react-project/build/static/css/main.b99b2d42.chunk.css"
   },
   {
-    "revision": "60f9b653019179e92c6e30f4452e25a9",
-    "url": "/react-project/build/static/media/bg.60f9b653.png"
+    "revision": "1bd083565c59490de35b83ba15b21c8d",
+    "url": "/react-project/build/static/media/search-bg.1bd08356.png"
   },
   {
-    "revision": "dced63826e6361fe90a0",
-    "url": "/react-project/build/static/js/1.dced6382.chunk.js"
+    "revision": "8690268906ccc5982502",
+    "url": "/react-project/build/static/js/1.86902689.chunk.js"
   },
   {
     "revision": "3443ad2322088a71abcd",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/media/account.74325722.svg"
   },
   {
-    "revision": "d3858053030979dc4639",
-    "url": "/react-project/build/static/js/main.d3858053.chunk.js"
+    "revision": "990e10186fe20c990258",
+    "url": "/react-project/build/static/js/main.990e1018.chunk.js"
   },
   {
     "revision": "26018783c46d206cd1fe6457cf875ba9",
@@ -56,11 +56,15 @@ self.__precacheManifest = [
     "url": "/react-project/build/static/media/404.ccee8dac.svg"
   },
   {
-    "revision": "dced63826e6361fe90a0",
+    "revision": "60f9b653019179e92c6e30f4452e25a9",
+    "url": "/react-project/build/static/media/bg.60f9b653.png"
+  },
+  {
+    "revision": "8690268906ccc5982502",
     "url": "/react-project/build/static/css/1.5e939f72.chunk.css"
   },
   {
-    "revision": "850847103204142b06051102cae16217",
+    "revision": "9454f2d66ab5e72eb8edaebbe1f40780",
     "url": "/react-project/build/index.html"
   }
 ];
